@@ -11,10 +11,15 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text("Catalog App"),
       ),
-      body: Center(
-        child: Container(
-          child: Text("Welcome to the $day $name course "),
-        ),
+      body: Container(
+        constraints: BoxConstraints(
+            minHeight: 70, maxHeight: 200, minWidth: 70, maxWidth: 200),
+        color: Colors.green,
+        // child: Container(
+        //   height: 100,
+        //   width: 100,
+        //   color: Colors.red,
+        // ),
       ),
       drawer: MyDrawer(),
     );

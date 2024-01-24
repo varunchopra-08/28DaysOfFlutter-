@@ -54,7 +54,7 @@ class CatalogItem extends StatelessWidget {
               children: [
                 "\$${catalog.price}".text.bold.xl.make(),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {} , 
                     style: ButtonStyle(
                         backgroundColor:
                             MaterialStateProperty.all(Mytheme.darkBluishColor),

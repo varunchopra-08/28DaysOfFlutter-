@@ -38,13 +38,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
-          backgroundColor: Mytheme.darkBluishColor,
+          backgroundColor:
+              context.theme.floatingActionButtonTheme.backgroundColor,
           child: const Icon(
             CupertinoIcons.cart,
             color: Colors.white,
           ),
         ),
-        backgroundColor: Mytheme.creamColor,
+        backgroundColor: context.canvasColor,
         body: SafeArea(
           child: Container(
             padding: Vx.m32,

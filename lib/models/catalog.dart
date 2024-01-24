@@ -1,7 +1,13 @@
 import 'dart:convert';
 
+import 'package:velocity_x/velocity_x.dart';
+
 class CatalogModel {
   static List<Item> items = [];
+
+  static Item getByPosition(int pos) => items[pos];
+  static Item getBy(int id) =>
+      items.firstWhere((element) => element.id == id, orElse: null);
 }
 
 class Item {

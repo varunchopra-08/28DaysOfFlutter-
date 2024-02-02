@@ -1,43 +1,48 @@
-import 'package:chapter_1/widgets/themes.dart';
+import 'package:chapter_1/models/cart.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class cartPage extends StatelessWidget {
-  const cartPage({super.key});
-
+class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.canvasColor,
       appBar: AppBar(
-          backgroundColor: Colors.transparent, title: "Cart".text.make()),
+        backgroundColor: Colors.transparent,
+        title: "Cart".text.make(),
+      ),
       body: Column(
-        children: [_CartList().p32().expand(), Divider(), _CartTotal()],
+        children: [
+          _CartList().p32().expand(),
+          Divider(),
+          _CartTotal(),
+        ],
       ),
     );
   }
 }
 
 class _CartTotal extends StatelessWidget {
-  const _CartTotal({super.key});
-
   @override
   Widget build(BuildContext context) {
+    final _cart = CartModel();
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(
-            "\$9999",
-            style: TextStyle(
-              color: context.theme.shadowColor,
-              fontSize: 30,
-            ),
-          ),
+          "\$${_cart.totalPrice}"
+              .text
+              .xl5
+              .color(context.theme.shadowColor)
+              .make(),
           30.widthBox,
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: "Buying not supported yet.".text.make(),
+              ));
+            },
             style: ButtonStyle(
                 backgroundColor: MaterialStateProperty.all(
                     context.theme.floatingActionButtonTheme.backgroundColor)),
@@ -50,23 +55,24 @@ class _CartTotal extends StatelessWidget {
 }
 
 class _CartList extends StatefulWidget {
-  const _CartList({super.key});
-
   @override
-  State<_CartList> createState() => __CartListState();
+  __CartListState createState() => __CartListState();
 }
 
 class __CartListState extends State<_CartList> {
   @override
   Widget build(BuildContext context) {
+    final _cart = CartModel();
     return ListView.builder(
+      itemCount: _cart.items.length,
       itemBuilder: (context, index) => ListTile(
         leading: Icon(Icons.done),
         trailing: IconButton(
-            onPressed: () {}, icon: Icon(Icons.remove_circle_outline)),
-        title: "Item 1".text.make(),
+          icon: Icon(Icons.remove_circle_outline),
+          onPressed: () {},
+        ),
+        title: _cart.items[index].name.text.make(),
       ),
-      itemCount: 5,
     );
   }
 }

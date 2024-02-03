@@ -54,15 +54,11 @@ class _CartTotal extends StatelessWidget {
   }
 }
 
-class _CartList extends StatefulWidget {
-  @override
-  __CartListState createState() => __CartListState();
-}
-
-class __CartListState extends State<_CartList> {
+class _CartList extends StatelessWidget{
+  final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    
     return _cart.items.isEmpty
         ? "Nothing to show".text.xl3.makeCentered()
         : ListView.builder(
@@ -73,7 +69,7 @@ class __CartListState extends State<_CartList> {
                 icon: Icon(Icons.remove_circle_outline),
                 onPressed: () {
                   _cart.remove(_cart.items[index]);
-                  setState(() {});
+                  //setState(() {});
                 },
               ),
               title: _cart.items[index].name.text.make(),

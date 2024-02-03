@@ -5,9 +5,7 @@ import 'package:chapter_1/models/catalog.dart';
 import 'package:flutter/foundation.dart';
 
 class CartModel {
-  static final cartModel = CartModel._internal();
-  CartModel._internal();
-  factory CartModel() => cartModel; // catalog field
+  // catalog field
   late CatalogModel _catalog;
 
   // Collection of IDs - store Ids of each item
